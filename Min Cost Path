@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+int minCost(int **input, int m, int n ,int i,int j)
+{
+    if(i>=m||j>=n)
+    {return INT_MAX;}
+if( i==m-1&& j==n-1)
+    {return input[i][j];}
+    
+    int x=INT_MAX,y=INT_MAX,z=INT_MAX;
+    x=minCost(input,m,n,i,j+1);
+    y=minCost(input,m,n,i+1,j);
+    z=minCost(input,m,n,i+1,j+1);
+    
+   int ans=input[i][j]+min(x,min(y,z));
+    return ans;
+        
+
+
+
+
+}
+
+
+
+
+int minCostPath(int **input, int m, int n) {
+    /* Don't write main().
+     * Don't read input, it is passed as function argument.
+     * Return output and don't print it.
+     * Taking input and printing output is handled automatically.
+     */
+    int k =minCost(input,  m,  n,0,0);
+    return k;
+}
